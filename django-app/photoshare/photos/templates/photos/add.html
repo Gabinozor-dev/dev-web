@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ajouter une photo</title>
+</head>
+<body class="m-5">
+	<div class="container">
+
+		<div class="row justify-content-center">
+			<div class="col-md-4">
+				<a href="{% url 'gallery' %}" class="btn btn-dark my-3">Retour</a>
+				<div class="card">
+
+
+
+					<form method='POST' action="" enctype="multipart/form-data">
+						
+						{% csrf_token %}
+						
+						<div cclass="form-goup m-3">
+							<label>Descition</label>
+							<input type="text" required name="description" placeholder="entrer la description" class="form-control">
+						</div>
+
+						<div cclass="form-goup m-3">
+							<label>Categories</label>
+							<select name="category" class="form-control">
+								<option value='none'>choisisser une categorie</option>
+
+								{% for category in categories %}
+								<option value='{{category.id}}'>{{category.name}}</option>
+								{%endfor%}
+
+							</select>
+						</div>
+
+
+						<div cclass="form-goup m-3">
+							<label>créer une nouvelle categorie</label>
+							<input type="text" name="category_new" placeholder="entrer la description" class="form-control">
+						</div>
+
+
+						<div class="form-group m-3">
+							<label> choisisser une image</label>
+							<input required type="file" name="image" class="form-control-file">
+						</div>
+
+						<button type="submit" class="btn btn-primary m-3"> Valider</button>
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
